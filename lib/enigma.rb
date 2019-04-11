@@ -1,9 +1,11 @@
 require 'date'
 
 class Enigma
+  #attr_reader :a_shift, :b_shift, :c_shift, :d_shift
+
   # initialize
   # @encrypt = ""
-  # @dencrypt = ""
+  # @decrypt = ""
   # @key = 0
   # @date = DateTime.now
   # @a_shift = []
@@ -12,9 +14,9 @@ class Enigma
   # @d_shift = []
   # @alphabet_array = ("a".."z").to_a << " "
   # @final_shifts = []
-  # @random_key = rand(10**5).to_s.rjust(5,"0").to_i
+  # @random_key = rand(10**5).to_s.rjust(5,"0")
 
-  # encrypt(input_message, input_key = random_key, date = @(date.strftime "%d%m%y").to_i)
+  # encrypt(input_message, input_key = random_key, date = @date.strftime "%d%m%y")
   # input_message arg takes a message string
   # input_key arg is optional and default is random key
   # date arg is optional and default is today's date
@@ -41,7 +43,7 @@ class Enigma
   #               :date       => the date used for encryption as a String in the form DDMMYY}
 
 
-  # decrypt(ciphertext, input_key, date = @(date.strftime "%d%m%y").to_i)
+  # decrypt(ciphertext, input_key, date = @date.strftime "%d%m%y")
   # ciphertext arg takes a ciphertext String
   # input_key arg is used for encryption
   # date arg is optional and default is today's date
