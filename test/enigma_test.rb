@@ -14,7 +14,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_produce_random_key
-    assert_equal 5, @enigma.random_key.length
+    assert_equal 5, @enigma.key.length
   end
 
   def test_it_can_produce_alphabet_array
@@ -28,10 +28,15 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_set_shifts
+    skip
     assert_equal 3, @enigma.set_a_shift("02715", "040895")
     assert_equal 27, @enigma.set_b_shift("02715", "040895")
     assert_equal 73, @enigma.set_c_shift("02715", "040895")
     assert_equal 20, @enigma.set_d_shift("02715", "040895")
+  end
+
+  def test_it_can_set_encrypt_message
+    assert_equal "keder ohulw", @enigma.set_encrypt_message("hello world", "02715", "040895")
   end
 
   def test_encrypt_method_with_key_and_date
