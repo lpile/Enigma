@@ -2,7 +2,7 @@ require 'date'
 
 class Enigma
   attr_reader :a_shift, :b_shift, :c_shift, :d_shift
-  
+
   def initialize
   @encrypt = ""
   @decrypt = ""
@@ -62,12 +62,11 @@ class Enigma
   #               :date       => the date used for decryption as a String in the form DDMMYY}
 
   ###########HELPER METHODS################
-  # set_keys(input_key)
-  # a_key = input_key[0..1]
-  # b_key = input_key[1..2]
-  # c_key = input_key[2..3]
-  # d_key = input_key[3..4]
-  # return [a_key, b_key, c_key, d_key]
+  def set_keys(input_key)
+    array = []
+    input_key.chars.each_cons(2){|a,b| array << a+b}
+    array
+  end
 
   # set_offset_keys(date)
   # offset_key = date**2
