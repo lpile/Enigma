@@ -16,22 +16,21 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_set_keys
-    expected = ['02', '27', '71', '15']
+    expected = [02, 27, 71, 15]
 
     assert_equal expected, @enigma.set_keys("02715")
   end
 
   def test_it_can_set_offset_keys
-    expected = ['1', '0', '2', '5']
+    expected = [1, 0, 2, 5]
 
     assert_equal expected, @enigma.set_offset_keys("040895")
   end
 
   def test_it_can_set_final_shifts
-    skip
-    keys = ['1', '0', '2', '5']
-    offset_keys = ['02', '27', '71', '15']
-    expected = ['3', '27', '73', '20']
+    keys = [1, 0, 2, 5]
+    offset_keys = [02, 27, 71, 15]
+    expected = [3, 27, 73, 20]
 
     assert_equal expected, @enigma.set_final_shift(keys, offset_keys)
   end

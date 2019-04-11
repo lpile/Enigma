@@ -65,20 +65,17 @@ class Enigma
   def set_keys(input_key)
     array = []
     input_key.chars.each_cons(2){|a,b| array << a+b}
-    array
+    array.map(&:to_i)
   end
 
   def set_offset_keys(date)
     offset_key = (date.to_i**2).to_s
-    offset_key.chars[-4..-1]
+    offset_key.chars[-4..-1].map(&:to_i)
   end
 
-  # set_final_shift(keys, offset_keys)
-  # @final_shifts << keys[0] + offset_keys[0]
-  # @final_shifts << keys[1] + offset_keys[1]
-  # @final_shifts << keys[2] + offset_keys[2]
-  # @final_shifts << keys[3] + offset_keys[3]
-  # return @final_shifts array
+  def set_final_shift(keys, offset_keys)
+    @final_shifts = keys.map.with_index{|value,index| value + offset_keys[index]}
+  end
 
   # set_shift_keys(message)
   # iterate through message and set shifts
