@@ -1,20 +1,21 @@
 require 'date'
 
 class Enigma
-  #attr_reader :a_shift, :b_shift, :c_shift, :d_shift
-
-  # initialize
-  # @encrypt = ""
-  # @decrypt = ""
-  # @key = 0
-  # @date = DateTime.now
-  # @a_shift = []
-  # @b_shift = []
-  # @c_shift = []
-  # @d_shift = []
-  # @alphabet_array = ("a".."z").to_a << " "
-  # @final_shifts = []
-  # @random_key = rand(10**5).to_s.rjust(5,"0")
+  attr_reader :a_shift, :b_shift, :c_shift, :d_shift
+  
+  def initialize
+  @encrypt = ""
+  @decrypt = ""
+  @key = 0
+  @date = DateTime.now
+  @a_shift = []
+  @b_shift = []
+  @c_shift = []
+  @d_shift = []
+  @alphabet_array = ("a".."z").to_a << " "
+  @final_shifts = []
+  @random_key = rand(10**5).to_s.rjust(5,"0")
+  end
 
   # encrypt(input_message, input_key = random_key, date = @date.strftime "%d%m%y")
   # input_message arg takes a message string

@@ -8,7 +8,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_exists_and_attributes
-    skip
     assert_instance_of Enigma, @enigma
     assert_equal [], @enigma.a_shift
     assert_equal [], @enigma.b_shift
@@ -17,7 +16,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_set_keys
-    skip
     expected = ['02', '27', '71', '15']
 
     assert_equal expected, @enigma.set_keys("02715")
