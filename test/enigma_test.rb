@@ -60,7 +60,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypt_method_with_key_and_date
-    skip
     expected = {  decryption: "hello world",
                   key: "02715",
                   date: "040895"}
@@ -75,27 +74,20 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypt_method_without_date
-    skip
-    expected = {  decryption: @enigma.decrypt_string,
-                  key: "02715",
-                  date: @enigma.date}
+    expected = {key: "02715", date: @enigma.date}
 
-    assert_equal expected, @enigma.decrypt("keder ohulw", "02715")
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715").delete_if{|k,v| k == :decryption}
   end
 
   def test_encrypt_method_without_key_and_date
-    expected = {key: @enigma.key,
-                date: @enigma.date}
+    expected = {key: @enigma.key, date: @enigma.date}
 
     assert_equal expected, @enigma.encrypt("hello world").delete_if{|k,v| k == :encryption}
   end
 
   def test_decrypt_method_without_key_and_date
-    skip
-    expected = {  encryption: @enigma.decrypt_string,
-                  key: @enigma.key,
-                  date: @enigma.date}
+    expected = {key: @enigma.key, date: @enigma.date}
 
-    assert_equal expected, @enigma.decrypt("keder ohulw")
+    assert_equal expected, @enigma.decrypt("keder ohulw").delete_if{|k,v| k == :decryption}
   end
 end

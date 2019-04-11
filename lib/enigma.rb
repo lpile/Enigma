@@ -18,7 +18,7 @@ class Enigma
   def decrypt(input_message, input_key = key, input_date = date)
     decrypt_message = {}
     message = set_decrypt_message(input_message, input_key, input_date)
-    decrypt_message = {encryption: message, key: input_key, date: input_date}
+    decrypt_message = {decryption: message, key: input_key, date: input_date}
   end
 
   def set_encrypt_message(message, key, date)
@@ -51,10 +51,22 @@ class Enigma
     alphabet_array.rotate(shift_key + offset_key)
   end
 
+  def get_a_shift(key, date)
+    shift_key = key[0..1].to_i
+    offset_key = last_four(date)[0].to_i
+    alphabet_array.rotate((-1)*(shift_key + offset_key))
+  end
+
   def set_b_shift(key, date)
     shift_key = key[1..2].to_i
     offset_key = last_four(date)[1].to_i
     alphabet_array.rotate(shift_key + offset_key)
+  end
+
+  def get_b_shift(key, date)
+    shift_key = key[1..2].to_i
+    offset_key = last_four(date)[1].to_i
+    alphabet_array.rotate((-1)*(shift_key + offset_key))
   end
 
   def set_c_shift(key, date)
@@ -63,9 +75,21 @@ class Enigma
     alphabet_array.rotate(shift_key + offset_key)
   end
 
+  def get_c_shift(key, date)
+    shift_key = key[2..3].to_i
+    offset_key = last_four(date)[2].to_i
+    alphabet_array.rotate((-1)*(shift_key + offset_key))
+  end
+
   def set_d_shift(key, date)
     shift_key = key[3..4].to_i
     offset_key = last_four(date)[3].to_i
     alphabet_array.rotate(shift_key + offset_key)
+  end
+
+  def get_d_shift(key, date)
+    shift_key = key[3..4].to_i
+    offset_key = last_four(date)[3].to_i
+    alphabet_array.rotate((-1)*(shift_key + offset_key))
   end
 end
