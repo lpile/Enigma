@@ -15,29 +15,25 @@ class Enigma
     encrypt_message = {encryption: message, key: input_key, date: input_date}
   end
 
-  # decrypt(ciphertext, input_key, date = @date.strftime "%d%m%y")
-  # ciphertext arg takes a ciphertext String
-  # input_key arg is used for encryption
-  # date arg is optional and default is today's date
+  def decrypt(input_message, input_key = key, input_date = date)
+    decrypt_message = {}
+    message = set_decrypt_message(input_message, input_key, input_date)
+    decrypt_message = {encryption: message, key: input_key, date: input_date}
+  end
 
-  # check input_key == @key
-  # check date == @date
-  # check ciphertext == @encrypt
-
-  # create @decrypt by iterating through ciphertext
-  # and reverse a_shift .. d_shift using @final_shifts array
-  # and build original message
-
-  # return hash { :encryption => the decrypted String
-  #               :key        => the key used for encryption as a String
-  #               :date       => the date used for decryption as a String in the form DDMMYY}
-
-  ###########HELPER METHODS################
   def set_encrypt_message(message, key, date)
     (0...message.length).step(4){|i| message[i] = set_a_shift(key, date)[alphabet_array.find_index(message[i])]}
     (1...message.length).step(4){|i| message[i] = set_b_shift(key, date)[alphabet_array.find_index(message[i])]}
     (2...message.length).step(4){|i| message[i] = set_c_shift(key, date)[alphabet_array.find_index(message[i])]}
     (3...message.length).step(4){|i| message[i] = set_d_shift(key, date)[alphabet_array.find_index(message[i])]}
+    message
+  end
+
+  def set_decrypt_message(message, key, date)
+    (0...message.length).step(4){|i| message[i] = get_a_shift(key, date)[alphabet_array.find_index(message[i])]}
+    (1...message.length).step(4){|i| message[i] = get_b_shift(key, date)[alphabet_array.find_index(message[i])]}
+    (2...message.length).step(4){|i| message[i] = get_c_shift(key, date)[alphabet_array.find_index(message[i])]}
+    (3...message.length).step(4){|i| message[i] = get_d_shift(key, date)[alphabet_array.find_index(message[i])]}
     message
   end
 
