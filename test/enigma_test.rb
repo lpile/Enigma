@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/enigma'
@@ -8,49 +10,28 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_exists_and_attributes
-    skip
     assert_instance_of Enigma, @enigma
-    assert_equal [], @enigma.a_shift
-    assert_equal [], @enigma.b_shift
-    assert_equal [], @enigma.c_shift
-    assert_equal [], @enigma.d_shift
   end
 
-  def test_it_can_set_keys
-    skip
-    expected = ['02', '27', '71', '15']
-
-    assert_equal expected, @enigma.set_keys("02715")
+  def test_it_can_produce_random_key
+    assert_equal 5, @enigma.random_key.length
   end
 
-  def test_it_can_set_offset_keys
-    skip
-    expected = ['1', '0', '2', '5']
+  def test_it_can_produce_alphabet_array
+    expected = ("a".."z").to_a << " "
 
-    assert_equal expected, @enigma.set_offset_keys("040895")
+    assert_equal expected, @enigma.alphabet_array
   end
 
-  def test_it_can_set_final_shifts
-    skip
-    keys = ['1', '0', '2', '5']
-    offset_keys = ['02', '27', '71', '15']
-    expected = ['3', '27', '73', '20']
-
-    assert_equal expected, @enigma.set_final_shift(keys, offset_keys)
+  def test_it_can_produce_last_four
+    assert_equal "1025", @enigma.last_four("040895")
   end
 
-  def test_it_can_set_letter_shifts
-    skip
-    @enigma.set_shift_keys("hello world")
-    a_shift = ['h', 'o', 'r']
-    b_shift = ['e', '', 'l']
-    c_shift = ['l', 'w', 'd']
-    d_shift = ['l', 'o']
-
-    assert_equal a_shift, @enigma.a_shift
-    assert_equal b_shift, @enigma.b_shift
-    assert_equal c_shift, @enigma.c_shift
-    assert_equal d_shift, @enigma.d_shift
+  def test_it_can_set_shifts
+    assert_equal 3, @enigma.set_a_shift("02715", "040895")
+    assert_equal 27, @enigma.set_b_shift("02715", "040895")
+    assert_equal 73, @enigma.set_c_shift("02715", "040895")
+    assert_equal 20, @enigma.set_d_shift("02715", "040895")
   end
 
   def test_encrypt_method_with_key_and_date
