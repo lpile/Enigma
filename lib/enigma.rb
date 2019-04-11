@@ -1,6 +1,5 @@
 
 require 'date'
-require 'pry'
 
 class Enigma
   attr_reader :key, :date
@@ -11,13 +10,9 @@ class Enigma
   end
 
   def encrypt(input_message, input_key = key, input_date = date)
-    encrypt = {}
-  # create @encrypt by iterating through a_shift .. d_shift
-  # using @final_shifts array to add to each shift by rotating
-  # through @alphabet_array
-  # build encrypted @encrypt string
-
-    encrypt = {encryption: "hllo", key: input_key, date: input_date}
+    encrypt_message = {}
+    message = set_encrypt_message(input_message, input_key, input_date)
+    encrypt_message = {encryption: message, key: input_key, date: input_date}
   end
 
   # decrypt(ciphertext, input_key, date = @date.strftime "%d%m%y")

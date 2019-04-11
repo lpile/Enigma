@@ -27,12 +27,24 @@ class EnigmaTest < Minitest::Test
     assert_equal "1025", @enigma.last_four("040895")
   end
 
-  def test_it_can_set_shifts
-    skip
-    assert_equal 3, @enigma.set_a_shift("02715", "040895")
-    assert_equal 27, @enigma.set_b_shift("02715", "040895")
-    assert_equal 73, @enigma.set_c_shift("02715", "040895")
-    assert_equal 20, @enigma.set_d_shift("02715", "040895")
+  def test_it_can_set_a_shifts
+    a = @enigma.alphabet_array.rotate(3)
+    assert_equal a, @enigma.set_a_shift("02715", "040895")
+  end
+
+  def test_it_can_set_b_shifts
+    b = @enigma.alphabet_array.rotate(27)
+    assert_equal b, @enigma.set_b_shift("02715", "040895")
+  end
+
+  def test_it_can_set_c_shifts
+    c = @enigma.alphabet_array.rotate(73)
+    assert_equal c, @enigma.set_c_shift("02715", "040895")
+  end
+
+  def test_it_can_set_d_shifts
+    d = @enigma.alphabet_array.rotate(20)
+    assert_equal d, @enigma.set_d_shift("02715", "040895")
   end
 
   def test_it_can_set_encrypt_message
@@ -40,7 +52,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypt_method_with_key_and_date
-    skip
     expected = {  encryption: "keder ohulw",
                   key: "02715",
                   date: "040895"}
@@ -57,30 +68,34 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
-  def test_encrypt_method_with_key_and_todays_date
-    skip
-    expected = {  encryption: "keder ohulw",
-                  key: "02715",
-                  date: "040895"}
+  def test_encrypt_method_without_date
+    expected = {key: "02715",date: @enigma.date}
 
-    assert_equal expected, @enigma.encrypt("hello world", "02715")
+    assert_equal expected, @enigma.encrypt("hello world", "02715").delete_if{|k,v| k == :encryption}
   end
 
-  def test_decrypt_method_with_key_and_todays_date
+  def test_decrypt_method_without_date
     skip
-    expected = {  decryption: "hello world",
+    expected = {  decryption: @enigma.decrypt_string,
                   key: "02715",
-                  date: ""}
+                  date: @enigma.date}
 
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715")
   end
 
-  def test_encrypt_method_with_key_and_todays_date
-    skip
-    expected = {  encryption: "keder ohulw",
-                  key: "02715",
-                  date: ""}
+  def test_encrypt_method_without_key_and_date
+    expected = {key: @enigma.key,
+                date: @enigma.date}
 
-    assert_equal expected, @enigma.encrypt("hello world")
+    assert_equal expected, @enigma.encrypt("hello world").delete_if{|k,v| k == :encryption}
+  end
+
+  def test_decrypt_method_without_key_and_date
+    skip
+    expected = {  encryption: @enigma.decrypt_string,
+                  key: @enigma.key,
+                  date: @enigma.date}
+
+    assert_equal expected, @enigma.decrypt("keder ohulw")
   end
 end
