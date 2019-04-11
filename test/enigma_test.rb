@@ -22,7 +22,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_set_offset_keys
-    skip
     expected = ['1', '0', '2', '5']
 
     assert_equal expected, @enigma.set_offset_keys("040895")

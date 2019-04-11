@@ -68,13 +68,10 @@ class Enigma
     array
   end
 
-  # set_offset_keys(date)
-  # offset_key = date**2
-  # a_offset = offset_key[-4]
-  # b_offset = offset_key[-3]
-  # c_offset = offset_key[-2]
-  # d_offset = offset_key[-1]
-  # return [a_offset, b_offset, c_offset, d_offset]
+  def set_offset_keys(date)
+    offset_key = (date.to_i**2).to_s
+    offset_key.chars[-4..-1]
+  end
 
   # set_final_shift(keys, offset_keys)
   # @final_shifts << keys[0] + offset_keys[0]
