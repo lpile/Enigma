@@ -10,12 +10,14 @@ class Enigma
   end
 
   def encrypt(input_message, input_key = key, input_date = date)
+    @key = input_key; @date = input_date
     encrypt_message = {}
     message = set_encrypt_message(input_message, input_key, input_date)
     encrypt_message = {encryption: message, key: input_key, date: input_date}
   end
 
   def decrypt(input_message, input_key = key, input_date = date)
+    @key = input_key; @date = input_date
     decrypt_message = {}
     message = set_decrypt_message(input_message, input_key, input_date)
     decrypt_message = {decryption: message, key: input_key, date: input_date}
