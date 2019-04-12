@@ -34,25 +34,25 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypt_method_without_date
-    expected = {key: "02715",date: @enigma.date}
+    expected = {key: "02715", date: @enigma.shift.date}
 
     assert_equal expected, @enigma.encrypt("hello world", "02715").delete_if{|k,v| k == :encryption}
   end
 
   def test_decrypt_method_without_date
-    expected = {key: "02715", date: @enigma.date}
+    expected = {key: "02715", date: @enigma.shift.date}
 
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715").delete_if{|k,v| k == :decryption}
   end
 
   def test_encrypt_method_without_key_and_date
-    expected = {key: @enigma.key, date: @enigma.date}
+    expected = {key: @enigma.shift.key, date: @enigma.shift.date}
 
     assert_equal expected, @enigma.encrypt("hello world").delete_if{|k,v| k == :encryption}
   end
 
   def test_decrypt_method_without_key_and_date
-    expected = {key: @enigma.key, date: @enigma.date}
+    expected = {key: @enigma.shift.key, date: @enigma.shift.date}
 
     assert_equal expected, @enigma.decrypt("keder ohulw").delete_if{|k,v| k == :decryption}
   end
