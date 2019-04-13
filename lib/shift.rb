@@ -16,27 +16,35 @@ class Shift
     (date.to_i**2).to_s[-4..-1]
   end
 
-  def set_a_shift(key, date)
+  def set_a_shift(key, date, bool = false)
     shift_key = key[0..1].to_i
     offset_key = last_four(date)[0].to_i
-    alphabet.rotate(shift_key + offset_key)
+    rotate(shift_key, offset_key, bool)
   end
 
-  def set_b_shift(key, date)
+  def set_b_shift(key, date, bool = false)
     shift_key = key[1..2].to_i
     offset_key = last_four(date)[1].to_i
-    alphabet.rotate(shift_key + offset_key)
+    rotate(shift_key, offset_key, bool)
   end
 
-  def set_c_shift(key, date)
+  def set_c_shift(key, date, bool = false)
     shift_key = key[2..3].to_i
     offset_key = last_four(date)[2].to_i
-    alphabet.rotate(shift_key + offset_key)
+    rotate(shift_key, offset_key, bool)
   end
 
-  def set_d_shift(key, date)
+  def set_d_shift(key, date, bool = false)
     shift_key = key[3..4].to_i
     offset_key = last_four(date)[3].to_i
-    alphabet.rotate(shift_key + offset_key)
+    rotate(shift_key, offset_key, bool)
+  end
+
+  def rotate(shift_key, offset_key, bool)
+    if bool == true
+      alphabet.rotate((shift_key + offset_key)*(-1))
+    else
+      alphabet.rotate(shift_key + offset_key)
+    end
   end
 end
