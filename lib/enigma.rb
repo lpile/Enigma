@@ -1,6 +1,6 @@
-require './lib/shift'
-require './lib/encryption'
-require './lib/decryption'
+require_relative 'shift'
+require_relative 'encryption'
+require_relative 'decryption'
 
 class Enigma
   attr_reader :shift
