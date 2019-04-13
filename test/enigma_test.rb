@@ -13,10 +13,6 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_it_can_set_encrypt_message
-    assert_equal "keder ohulw", @enigma.set_encrypt_message("hello world", "02715", "040895")
-  end
-
   def test_encrypt_method_with_key_and_date
     expected = {  encryption: "keder ohulw",
                   key: "02715",
@@ -24,7 +20,7 @@ class EnigmaTest < Minitest::Test
 
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
-
+  
   def test_decrypt_method_with_key_and_date
     expected = {  decryption: "hello world",
                   key: "02715",
