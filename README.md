@@ -1,3 +1,25 @@
+# Self assessment
+
+* Functionality
+  - 3
+  - All methods and command line interfaces successfully implemented.
+* OOP
+  - 3
+  - Project consist of 4 classes which all single responsibility.
+  - All methods are less than 7 lines.
+  - All classes are less than 100 lines of code.
+  - Variable and method names clearly communicate purpose.
+* Test Driven Development
+  - 3
+  - TDD was implemented from start to finish.
+  - 100% coverage using Simplecov.
+* Version Control
+  - 4
+  - 40+ commits.
+  - At least 15 pull requests.
+  - No commit message is ambiguous.
+
+___
 # Class Requirements
 You are required to build an `Enigma` class with the methods described below. However, your project should include at least 3 additional classes that help break the problem into logical components. All classes and methods should have a single responsibility, and should be well organized and readable.
 
