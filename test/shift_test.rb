@@ -5,6 +5,7 @@ require 'minitest/pride'
 require './lib/shift'
 
 class ShiftTest < Minitest::Test
+
   def setup
     @shift = Shift.new
   end
@@ -70,4 +71,5 @@ class ShiftTest < Minitest::Test
     d = @shift.alphabet.rotate(-20)
     assert_equal d, @shift.set_d_shift("02715", "040895", true)
   end
+  
 end

@@ -6,6 +6,7 @@ require './lib/decryption'
 require './lib/shift'
 
 class DecryptionTest < Minitest::Test
+
   def setup
     @shift = Shift.new
     @shift.key = "02715"
@@ -20,4 +21,5 @@ class DecryptionTest < Minitest::Test
   def test_it_can_set_decrypt_message
     assert_equal "hello world", @decryption.message
   end
+  
 end

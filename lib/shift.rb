@@ -1,6 +1,7 @@
 require 'date'
 
 class Shift
+
   attr_accessor :key, :date
 
   def initialize
@@ -47,4 +48,5 @@ class Shift
       alphabet.rotate(shift_key + offset_key)
     end
   end
+
 end
