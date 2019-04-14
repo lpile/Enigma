@@ -3,6 +3,7 @@ require_relative 'encryption'
 require_relative 'decryption'
 
 class Enigma
+
   attr_reader :shift
 
   def initialize
@@ -20,4 +21,5 @@ class Enigma
     @shift.date = input_date
     Decryption.new(input_message, @shift).summary
   end
+
 end
