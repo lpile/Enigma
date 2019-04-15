@@ -13,13 +13,13 @@ class Enigma
   def encrypt(input_message, input_key = @shift.key, input_date = @shift.date)
     @shift.key = input_key
     @shift.date = input_date
-    Encryption.new(input_message, @shift).summary
+    Encryption.new(input_message.downcase, @shift).summary
   end
 
   def decrypt(input_message, input_key = @shift.key, input_date = @shift.date)
     @shift.key = input_key
     @shift.date = input_date
-    Decryption.new(input_message, @shift).summary
+    Decryption.new(input_message.downcase, @shift).summary
   end
 
 end
