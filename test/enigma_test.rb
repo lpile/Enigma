@@ -5,7 +5,7 @@ require 'minitest/pride'
 require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
-  
+
   def setup
     @enigma = Enigma.new
   end
@@ -14,12 +14,20 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
-  def test_encrypt_method_with_key_and_date
-    expected = {  encryption: "keder ohulw",
-                  key: "02715",
+  def test_encrypt_method_with_3_digit_key_and_date
+    expected = {  encryption: "ildepgohssw",
+                  key: "00715",
                   date: "040895"}
 
-    assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
+    assert_equal expected, @enigma.encrypt("hello world", "715", "040895")
+  end
+
+  def test_decrypt_method_with_3_digit_key_and_date
+    expected = {  decryption: "hello world",
+                  key: "00715",
+                  date: "040895"}
+
+    assert_equal expected, @enigma.decrypt("ildepgohssw", "715", "040895")
   end
 
   def test_decrypt_method_with_key_and_date

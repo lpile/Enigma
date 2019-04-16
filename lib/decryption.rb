@@ -3,7 +3,7 @@ class Decryption
   attr_reader :message
 
   def initialize(message, shift)
-    @message = message
+    @message = message.downcase
     @shift = shift
     set_decrypt_message
   end
@@ -13,10 +13,10 @@ class Decryption
   end
 
   def set_decrypt_message
-    (0...@message.length).step(4){|index| @message[index] = change_a(index)}
-    (1...@message.length).step(4){|index| @message[index] = change_b(index)}
-    (2...@message.length).step(4){|index| @message[index] = change_c(index)}
-    (3...@message.length).step(4){|index| @message[index] = change_d(index)}
+    (0...@message.length).step(4){|index| @message[index] = change_a(index) if @shift.alphabet.include?(@message[index])}
+    (1...@message.length).step(4){|index| @message[index] = change_b(index) if @shift.alphabet.include?(@message[index])}
+    (2...@message.length).step(4){|index| @message[index] = change_c(index) if @shift.alphabet.include?(@message[index])}
+    (3...@message.length).step(4){|index| @message[index] = change_d(index) if @shift.alphabet.include?(@message[index])}
   end
 
   def change_a(index)
