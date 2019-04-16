@@ -11,15 +11,15 @@ class Enigma
   end
 
   def encrypt(input_message, input_key = @shift.key, input_date = @shift.date)
-    @shift.key = input_key
+    @shift.key = input_key.rjust(5, "0")
     @shift.date = input_date
-    Encryption.new(input_message.downcase, @shift).summary
+    Encryption.new(input_message, @shift).summary
   end
 
   def decrypt(input_message, input_key = @shift.key, input_date = @shift.date)
-    @shift.key = input_key
+    @shift.key = input_key.rjust(5, "0")
     @shift.date = input_date
-    Decryption.new(input_message.downcase, @shift).summary
+    Decryption.new(input_message, @shift).summary
   end
 
 end
