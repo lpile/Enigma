@@ -3,6 +3,7 @@ require_relative 'enigma'
 enigma = Enigma.new
 
 message = File.open(ARGV[0], "r")
+
 encryption = ""
 message.each {|line| encryption += enigma.encrypt(line.chop)[:encryption] + "\n"}
 message.close
